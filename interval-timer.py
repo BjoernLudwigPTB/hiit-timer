@@ -13,9 +13,9 @@ def main():
     parser.add_argument(
         "-w",
         "--wait",
-        default=2,
+        default=10,
         type=int,
-        help="Seconds before first in in between exercise.",
+        help="Seconds before first and in between exercise.",
     )
     parser.add_argument(
         "-e",
@@ -23,7 +23,7 @@ def main():
         dest="exercises",
         nargs="+",
         type=int,
-        help="Seconds for exercises.",
+        help="Duration of exercises.",
     )
     parser.add_argument(
         "-n", "--names", nargs="*", help="Names for the exercises to be performed."
@@ -37,7 +37,11 @@ def main():
         help="Number of repetitions for exercises.",
     )
     parser.add_argument(
-        "-d", "--delays", nargs="*", type=int, help="Delays between exercises.",
+        "-d",
+        "--delays",
+        nargs="*",
+        type=int,
+        help="Delay or delays between exercises.",
     )
     args = parser.parse_args()
 
@@ -45,7 +49,7 @@ def main():
     try:
         if len(args.names) != len(args.exercises):
             raise ValueError(
-                f"Number of names for exercises ist expected to match "
+                f"Number of names for exercises is expected to match "
                 f"number of exercises but {len(args.exercises)} exercises "
                 f"and {len(args.names)} names were given."
             )

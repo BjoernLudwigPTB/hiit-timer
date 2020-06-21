@@ -15,18 +15,19 @@ def main():
         "--wait",
         default=10,
         type=int,
-        help="Seconds before first and in between exercise.",
+        help="Seconds before first and in between exercises.",
     )
     parser.add_argument(
-        "-e",
-        "--exercises",
-        dest="exercises",
+        "exercises",
         nargs="+",
         type=int,
-        help="Duration of exercises.",
+        help="Space separated list of durations for exercises.",
     )
     parser.add_argument(
-        "-n", "--names", nargs="*", help="Names for the exercises to be performed."
+        "-n",
+        "--names",
+        nargs="*",
+        help="Space separated list of Names for the exercises.",
     )
     parser.add_argument(
         "-r",
@@ -34,14 +35,16 @@ def main():
         nargs="*",
         default=6,
         type=int,
-        help="Number of repetitions for exercises.",
+        help="Single number of repetitions to be used for all exercises or space "
+        "separated list of repetitions to be used for the according exercises.",
     )
     parser.add_argument(
         "-d",
         "--delays",
         nargs="*",
         type=int,
-        help="Delay or delays between exercises.",
+        help="Single delay to be used for breaks in between repetitions or space "
+        "separated list of delays each to be used for the according exercises.",
     )
     args = parser.parse_args()
 

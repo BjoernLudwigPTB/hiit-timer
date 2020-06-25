@@ -33,8 +33,9 @@ def _get_urls() -> Dict[str, str]:
         - finish: final ending signal
     """
     return {
-        "beep": "https://www.soundjay.com/button/beep-08b.wav",
-        "start": "https://soundbible.com/grab.php?id=2162&type=wav",
+        "beep": "http://tastyspleen.net/~quake2/baseq2/sound/world/clock.wav",
+        "ignition": "http://billor.chsh.chc.edu.tw/sound/rocket.wav",
+        "running": "https://soundbible.com/grab.php?id=2162&type=wav",
         "end": "https://www.wavsource.com/snds_2020-06-10_7014036401687385/sfx"
         "/boxing_bell.wav",
         "finish": "https://www.wavsource.com/snds_2020-06-10_7014036401687385/sfx"
@@ -70,24 +71,26 @@ def download_file(
 
 
 def download_audio_files(
-    urls: Tuple[str], save_to_folder: str = ".//audio//", overwrite: bool = False
-) -> None:
+    urls: Dict[str, str],
+    save_to_folder: PurePath = PurePath(".//audio//"),
+    overwrite: bool = False,
+) -> PurePath:
     """Download files from a given list of URLs to a given location
 
     Parameters
     ----------
     urls : str
         URL of the file to download
-    save_to_folder : PurePath
+    save_to_folder : str
         local filesystem path to a folder in which the files will be stored (defaults
         to ./audio) from the working directory
     overwrite : bool, optional
         if False (default) and the file is already present it does not get downloaded
         again, if True the download overwrites the possibly present file"""
-    for url in urls:
+    for url in urls.values():
         download_file(url=url, save_to_folder=save_to_folder, overwrite=overwrite)
     return save_to_folder
 
 
 if __name__ == "__main__":
-    download_file(_get_urls()[0], filename="my_2name")
+    download_audio_files(_get_urls())

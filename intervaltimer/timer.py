@@ -2,12 +2,25 @@
 # -*- coding=utf-8 -*-
 
 import argparse
-import sys
+import wave
 
+from os import path
+import sys
+from pathlib import Path, PurePath
 from time import localtime, sleep, strftime, time
+
+import simpleaudio as sa
+
+from initialize import download_audio_files, download_file
 
 
 def main():
+    # Set audio files' path.
+    files = [
+        Path(f".//intervaltimer//audio//applause2.wav"),
+        Path("intervaltimer//audio//boxing_bell.wav"),
+    ]
+
     # Execute the time with provided command line parameters.
     parser = argparse.ArgumentParser(description="A timer for interval training.")
     parser.add_argument(
@@ -117,6 +130,16 @@ def main():
         for exercise in exercises:
             exercise["reps"] = args.reps
 
+    duration = 0
+    for exercise in exercises:
+        duration += (
+            args.wait
+            + exercise["reps"] * (exercise["duration"] + exercise["delay"])
+            - exercise["delay"]
+        )
+
+    print(f"The exercise will take approximately {duration} seconds.")
+
     begin_time = time()
 
     for exercise in exercises:
@@ -134,6 +157,17 @@ def main():
     sys.exit(0)
 
 
+def audio():
+
+    wave_read = wave.open(str(PurePath("./audio/my_2name")), "rb",)
+    audio_data = wave_read.readframes(wave_read.getnframes())
+    num_channels = wave_read.getnchannels()
+    bytes_per_sample = wave_read.getsampwidth()
+    sample_rate = wave_read.getframerate()
+    wave_obj = sa.WaveObject(audio_data, num_channels, bytes_per_sample, sample_rate)
+    play_obj = wave_obj.play()
+
+
 def verbose_countdown(duration: int):
     # Print indented the remaining time of a countdown every second.
     for wait_for in range(duration, 0, -1):
@@ -142,4 +176,4 @@ def verbose_countdown(duration: int):
 
 
 if __name__ == "__main__":
-    main()
+    audio()

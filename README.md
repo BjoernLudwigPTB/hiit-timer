@@ -8,7 +8,7 @@ Requires Python 3.6+.
 
 ## Usage help
 
-usage: interval-timer.py [-h] [-w WAIT] [-n [NAMES [NAMES ...]]] [-r [REPS [REPS ...]]] [-d [DELAYS [DELAYS ...]]] exercises [exercises ...]
+usage: timer.py [-h] [-w WAIT] [-n [NAMES [NAMES ...]]] [-r [REPS [REPS ...]]] [-d [DELAYS [DELAYS ...]]] exercises [exercises ...]
 
 A timer for interval training.
 
@@ -34,4 +34,4 @@ optional arguments:
 
 ## Example usage
 
-    ./interval-timer.py 6 12 6 --names crunch T dip
+    ./intervaltimer/timer.py 6 12 6 --names crunch T dip

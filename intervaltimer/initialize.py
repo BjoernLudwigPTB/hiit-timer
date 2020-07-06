@@ -35,7 +35,7 @@ def _get_urls() -> Dict[str, str]:
     return {
         "beep": "http://tastyspleen.net/~quake2/baseq2/sound/world/clock.wav",
         "ignition": "http://billor.chsh.chc.edu.tw/sound/rocket.wav",
-        "running": "https://soundbible.com/grab.php?id=2162&type=wav",
+        "running": "https://www.soundjay.com/human/heartbeat-04.wav",
         "end": "https://www.wavsource.com/snds_2020-06-10_7014036401687385/sfx"
         "/boxing_bell.wav",
         "finish": "https://www.wavsource.com/snds_2020-06-10_7014036401687385/sfx"

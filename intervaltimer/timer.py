@@ -83,7 +83,10 @@ class Timer:
             )
 
         # Perform the actual training.
-        print(f"The exercise will take approximately {duration} seconds.")
+        print(
+            "The exercise will take approximately "
+            f"{strftime('%Mm%Ss', localtime(duration))}."
+        )
 
         # Start the timer
         begin_time = time()
@@ -105,9 +108,7 @@ class Timer:
 
         finish_audio = self.audio_files["finish"].play()
 
-        print(
-            f"Set completed in {strftime('%S', localtime(time() - begin_time))} seconds."
-        )
+        print(f"Set completed in {strftime('%Mm%Ss', localtime(time() - begin_time))}.")
         while finish_audio.is_playing():
             pass
         sys.exit(0)
@@ -117,7 +118,7 @@ class Timer:
         try:
             if len(self.args.names) != len(self.args.exercises):
                 raise ValueError(
-                    f"Number of names for exercises is expected to match "
+                    "Number of names for exercises is expected to match "
                     f"number of exercises but {len(self.args.exercises)} exercises "
                     f"and {len(self.args.names)} names were given."
                 )
@@ -141,8 +142,8 @@ class Timer:
                     # We provided an unequal number of delays compared to the number of
                     # exercises and not only one, which can be used for all exercises.
                     raise ValueError(
-                        f"Number of delays for exercises ist expected to match "
-                        f"number of exercises or to be just one to be used for all "
+                        "Number of delays for exercises ist expected to match "
+                        "number of exercises or to be just one to be used for all "
                         f"exercises but we have {len(self.args.exercises)} exercises "
                         f"and {len(self.args.delays)} delays."
                     )
@@ -164,8 +165,8 @@ class Timer:
                     # We provided an unequal number of delays compared to the number of
                     # exercises and not only one, which can be used for all exercises.
                     raise ValueError(
-                        f"Number of repetitions for exercises ist expected to match "
-                        f"number of exercises or to be just one to be used for all "
+                        "Number of repetitions for exercises ist expected to match "
+                        "number of exercises or to be just one to be used for all "
                         f"exercises but we have {len(self.args.exercises)} exercises "
                         f"and {len(self.args.reps)} repetitions."
                     )
